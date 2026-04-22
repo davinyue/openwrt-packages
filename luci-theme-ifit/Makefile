@@ -1,5 +1,6 @@
 # LuCI Theme Infinity Freedom
-# 
+# Forked from https://github.com/xiaoqingfengATGH/luci-theme-infinityfreedom
+# Modified for ifit naming convention
 #
 # Licensed under the Apache License v2.0
 # http://www.apache.org/licenses/LICENSE-2.0
@@ -10,7 +11,7 @@ THEME_NAME:=ifit
 THEME_TITLE:=ifit
 
 PKG_NAME:=luci-theme-$(THEME_NAME)
-PKG_VERSION:=1.5.2
+PKG_VERSION:=2.0.0
 
 PKG_RELEASE:=1
 
@@ -21,8 +22,8 @@ define Package/luci-theme-$(THEME_NAME)
   CATEGORY:=LuCI
   SUBMENU:=4. Themes
   DEPENDS:=+libc
-  TITLE:=Ifit Theme
-  URL:=https://github.com/kenzok8/luci-theme-ifit
+  TITLE:=$(THEME_TITLE)
+  URL:=https://github.com/kenzok78/luci-theme-infinityfreedom
   PKGARCH:=all
 endef
 
@@ -34,7 +35,7 @@ endef
 
 define Package/luci-theme-$(THEME_NAME)/install
 	$(INSTALL_DIR) $(1)/etc/uci-defaults
-	$(INSTALL_BIN) ./files/10_luci-theme-$(THEME_NAME) $(1)/etc/uci-defaults/luci-theme-$(THEME_NAME)	
+	$(INSTALL_BIN) ./files/10_luci-theme-$(THEME_NAME) $(1)/etc/uci-defaults/luci-theme-$(THEME_NAME)
 	$(INSTALL_DIR) $(1)/www/luci-static/$(THEME_NAME)
 	$(CP) -a ./files/htdocs/* $(1)/www/luci-static/$(THEME_NAME)/ 2>/dev/null || true
 	$(INSTALL_DIR) $(1)/usr/lib/lua/luci/view/themes/$(THEME_NAME)

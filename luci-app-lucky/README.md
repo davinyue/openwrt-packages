@@ -1,9 +1,20 @@
 ## 访问数：![hello](https://views.whatilearened.today/views/github/sirpdboy/deplives.svg)[![](https://img.shields.io/badge/TG群-点击加入-FFFFFF.svg)](https://t.me/joinchat/AAAAAEpRF88NfOK5vBXGBQ)
 ### 访问数：[![](https://visitor-badge.glitch.me/badge?page_id=sirpdboy-visitor-badge)] [![](https://img.shields.io/badge/TG群-点击加入-FFFFFF.svg)](https://t.me/joinchat/AAAAAEpRF88NfOK5vBXGBQ)
 
+
+<p align="center">
+<a href="https://openwrt.org"><img alt="OpenWrt" src="https://img.shields.io/badge/OpenWrt-%E2%89%A519.07-ff0000?logo=openwrt&logoColor=white"></a>
+<a href="https://www.google.com/chrome/"><img alt="Chrome" src="https://img.shields.io/badge/Chrome-%E2%89%A5111-4285F3?logo=googlechrome&logoColor=white"></a>
+<a href="https://www.apple.com/safari/"><img alt="Safari" src="https://img.shields.io/badge/Safari-%E2%89%A516.4-000000?logo=safari&logoColor=white"></a>
+<a href="https://www.mozilla.org/firefox/"><img alt="Firefox" src="https://img.shields.io/badge/Firefox-%E2%89%A5128-FF7138?logo=firefoxbrowser&logoColor=white"></a>
+<a target="_blank" href="https://github.com/sirpdboy/luci-app-lucky/releases"> <img alt="GitHub release" src="https://img.shields.io/github/v/release/sirpdboy/luci-app-lucky"></a>
+<a href="https://github.com/sirpdboy/luci-app-lucky/releases"><img alt="Downloads" src="https://img.shields.io/github/downloads/sirpdboy/luci-app-lucky/total?cacheSeconds=1"></a>
+</p>
+
+
 欢迎来到sirpdboy的源码仓库！
 =
-# Lucky(大吉)
+# Lucky
 
 本项目是 ([Lucky](https://github.com/gdy666/lucky)) 在 OpenWrt 上的移植。
 
@@ -11,7 +22,7 @@ luci-app-lucky 动态域名ddns-go服务,替代socat主要用于公网IPv6 tcp/u
 
 [![若部分图片无法正常显示，请挂上机场浏览或点这里到末尾看修复教程](https://visitor-badge.glitch.me/badge?page_id=sirpdboy-visitor-badge)](#解决-github-网页上图片显示失败的问题) [![](https://img.shields.io/badge/TG群-点击加入-FFFFFF.svg)](https://t.me/joinchat/AAAAAEpRF88NfOK5vBXGBQ)
 
-[luci-app-lucky Lucky(大吉)](https://github.com/sirpdboy/luci-app-lucky)
+[luci-app-lucky Lucky](https://github.com/sirpdboy/luci-app-lucky)
 ======================
 
 
@@ -19,7 +30,7 @@ luci-app-lucky 动态域名ddns-go服务,替代socat主要用于公网IPv6 tcp/u
 
 ## 功能说明：
 
-### Lucky(大吉)
+### Lucky
 
 #### 动态域名ddns-go服务,替代socat主要用于公网IPv6 tcp/udp转内网ipv4,http/https反向代理
 

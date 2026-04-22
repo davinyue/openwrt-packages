@@ -10,11 +10,11 @@ include $(TOPDIR)/rules.mk
 PKG_ARCH_quickstart:=$(ARCH)
 
 PKG_NAME:=quickstart
-PKG_VERSION:=0.11.1
+PKG_VERSION:=0.12.1
 PKG_RELEASE:=1
 PKG_SOURCE:=$(PKG_NAME)-binary-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://github.com/linkease/istore-packages/releases/download/prebuilt/
-PKG_HASH:=5f59e69dc1a8dc5606e53936cc7a34f6d37c9102cbf378576420ef9fdd7e7d2f
+PKG_HASH:=6ae9f78817bfde793b6326523158a2d026871b554e70d6657ff68167d540a3e5
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-binary-$(PKG_VERSION)
 
@@ -28,7 +28,8 @@ define Package/$(PKG_NAME)
 	CATEGORY:=Network
 	SUBMENU:=Web Servers/Proxies
 	TITLE:=Quickstart, the quick start.
-	DEPENDS:=@(x86_64||aarch64||arm) +shadow-utils +shadow-useradd +mount-utils +block-mount +lsblk +e2fsprogs +parted +smartmontools +smartd +mdadm +ip-full +ubus +uci +bash
+	DEPENDS:=@(x86_64||aarch64||arm) +shadow-utils +shadow-useradd +mount-utils +block-mount +lsblk +e2fsprogs +parted \
+		+smartmontools +smartd +smartmontools-drivedb +mdadm +ip-full +ubus +uci +bash
 	URL:=https://easepi.linkease.com/
 endef
 
@@ -69,6 +70,8 @@ define Package/$(PKG_NAME)/install
 	$(LN) /usr/sbin/quickstart $(1)/usr/sbin/startdhns
 	$(INSTALL_DIR) $(1)/etc/hotplug.d/iface
 	$(INSTALL_BIN) ./files/startdhns.hotplug $(1)/etc/hotplug.d/iface/21-startdhns
+	$(INSTALL_DIR) $(1)/usr/share/quickstart
+	$(INSTALL_DATA) ./files/manuf $(1)/usr/share/quickstart/manuf
 endef
 
 $(eval $(call BuildPackage,$(PKG_NAME)))
