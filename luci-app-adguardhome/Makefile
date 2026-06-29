@@ -6,19 +6,30 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=luci-app-adguardhome
-PKG_MAINTAINER:=kenzok8 <https://github.com/kenzok78>
+PKG_MAINTAINER:=kenzok8
 PKG_VERSION:=1.0
-PKG_RELEASE:=1
+PKG_RELEASE:=9
 
 LUCI_TITLE:=LuCI app for AdGuardHome
 LUCI_PKGARCH:=all
 LUCI_DEPENDS:=+ca-certs +curl +wget-ssl +PACKAGE_$(PKG_NAME)_INCLUDE_binary:adguardhome
+# luci-compat only exists in ucode-based LuCI (24.10+)
+ifneq ($(wildcard $(TOPDIR)/feeds/luci/luci-compat/Makefile),)
+  LUCI_DEPENDS+= +luci-compat
+endif
 LUCI_DESCRIPTION:=LuCI support for AdGuardHome
 
 define Package/$(PKG_NAME)/config
 config PACKAGE_$(PKG_NAME)_INCLUDE_binary
 	bool "Include Binary File"
-	default y
+	default n
+	help
+	  When enabled, also pulls in the adguardhome binary package.
+	  Disabled by default to avoid init.d/config name conflict with
+	  the adguardhome package (uses lowercase init.d/adguardhome,
+	  while this LuCI app uses /etc/init.d/AdGuardHome). The LuCI
+	  app downloads the binary at runtime, so the package dependency
+	  is only needed for offline / sysupgrade scenarios.
 endef
 
 PKG_CONFIG_DEPENDS:= CONFIG_PACKAGE_$(PKG_NAME)_INCLUDE_binary
@@ -30,6 +41,13 @@ endef
 
 define Package/luci-app-adguardhome/postinst
 #!/bin/sh
+	# Stop and disable the lowercase /etc/init.d/adguardhome that ships
+	# with the adguardhome binary package, so it can not race the LuCI
+	# app's /etc/init.d/AdGuardHome (issue #254).
+	if [ -x /etc/init.d/adguardhome ] && [ -x /etc/init.d/AdGuardHome ]; then
+		/etc/init.d/adguardhome stop    >/dev/null 2>&1
+		/etc/init.d/adguardhome disable >/dev/null 2>&1
+	fi
 	/etc/init.d/AdGuardHome enable >/dev/null 2>&1
 	enable="$(uci get AdGuardHome.AdGuardHome.enabled 2>/dev/null)"
 	[ "$enable" = "1" ] && /etc/init.d/AdGuardHome reload >/dev/null 2>&1
